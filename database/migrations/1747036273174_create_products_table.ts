@@ -1,4 +1,3 @@
-// database/migrations/xxx_create_products.ts
 import {BaseSchema} from '@adonisjs/lucid/schema'
 
 export default class extends BaseSchema {
@@ -14,10 +13,9 @@ export default class extends BaseSchema {
       table.string('thumbnail').nullable()
       table.enum('category', ['electronics', 'fashion', 'home', 'sports'])
       table.boolean('is_featured').defaultTo(false)
-      table.integer('stock').unsigned().defaultTo(0)
-      
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.integer('stock').unsigned().defaultTo(0)   
+      table.timestamp('created_at')
+      table.timestamp('updated_at')
     })
   }
 }
