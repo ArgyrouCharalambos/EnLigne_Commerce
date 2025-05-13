@@ -1,68 +1,90 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ meta.title }}</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <style>
-    .font-display { font-family: 'Playfair Display', serif; }
-    .gallery-thumb.active { border-color: #6366f1; }
-  </style>
-</head>
-<body class="bg-gray-50" x-data="{ activeImage: 0, quantity: 1 }">
-  <!-- Navigation (identique à l'accueil) -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {{ meta.title }}
+    </title>
+    <script src="https://cdn.tailwindcss.com">
+      
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js">
+      
+    </script>
+    <style>
+      .font-display {
+        font-family: 'Playfair Display', serif;
+      }
+      
+      .gallery-thumb.active {
+        border-color: #6366f1;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50" x-data="{ activeImage: 0, quantity: 1 }">
+    <!-- Navigation (identique à l'accueil) -->
 
-  <main class="max-w-7xl mx-auto px-6 py-12">
-    <div class="lg:grid lg:grid-cols-2 lg:gap-12">
-      <!-- Gallery -->
-      <div class="mb-12">
-        <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden mb-4">
-          <img :src="product.images[activeImage]" class="w-full h-full object-contain">
-        </div>
-        <div class="grid grid-cols-4 gap-3">
-          <template x-for="(image, index) in product.images" :key="index">
-            <button @click="activeImage = index" :class="{ 'active': activeImage === index }" class="gallery-thumb aspect-square bg-gray-100 rounded-lg overflow-hidden border-2">
-              <img :src="image" class="w-full h-full object-cover">
-            </button>
-          </template>
-        </div>
-      </div>
-
-      <!-- Product Info -->
-      <div>
-        <h1 class="text-4xl font-display mb-4" x-text="product.name"></h1>
-        <div class="flex items-center space-x-4 mb-6">
-          <div class="text-3xl font-bold text-indigo-600" x-text="`${product.price}€`"></div>
-          <div class="flex items-center text-yellow-400">
-            ★★★★★ <span class="text-gray-600 text-sm ml-2">(24 avis)</span>
+    <main class="max-w-7xl mx-auto px-6 py-12">
+      <div class="lg:grid lg:grid-cols-2 lg:gap-12">
+        <!-- Gallery -->
+        <div class="mb-12">
+          <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden mb-4">
+            <img :src="product.images[activeImage]" class="w-full h-full object-contain" />
+          </div>
+          <div class="grid grid-cols-4 gap-3">
+            <template x-for="(image, index) in product.images" :key="index">
+              <button
+                @click="activeImage = index"
+                :class="{ 'active': activeImage === index }"
+                class="gallery-thumb aspect-square bg-gray-100 rounded-lg overflow-hidden border-2"
+              >
+                <img :src="image" class="w-full h-full object-cover" />
+              </button>
+            </template>
           </div>
         </div>
 
-        <div class="space-y-6 mb-8">
-          <div>
-            <label class="block text-sm font-medium mb-2">Quantité</label>
-            <div class="flex items-center space-x-2">
-              <button @click="quantity > 1 ? quantity-- : null" class="px-3 py-2 border rounded-lg">-</button>
-              <input type="text" x-model="quantity" class="w-16 text-center border rounded-lg">
-              <button @click="quantity++" class="px-3 py-2 border rounded-lg">+</button>
+        <!-- Product Info -->
+        <div>
+          <h1 class="text-4xl font-display mb-4" x-text="product.name">
+          </h1>
+          <div class="flex items-center space-x-4 mb-6">
+            <div class="text-3xl font-bold text-indigo-600" x-text="`${product.price}€`">
+            </div>
+            <div class="flex items-center text-yellow-400">
+              ★★★★★ <span class="text-gray-600 text-sm ml-2">(24 avis)</span>
             </div>
           </div>
 
-          <button class="w-full bg-indigo-600 text-white py-4 rounded-lg font-bold hover:bg-indigo-700 transition-colors">
-            Ajouter au panier - <span x-text="`${product.price * quantity}€`"></span>
-          </button>
-        </div>
+          <div class="space-y-6 mb-8">
+            <div>
+              <label class="block text-sm font-medium mb-2">Quantité</label>
+              <div class="flex items-center space-x-2">
+                <button @click="quantity > 1 ? quantity-- : null" class="px-3 py-2 border rounded-lg">-</button>
+                <input type="text" x-model="quantity" class="w-16 text-center border rounded-lg" />
+                <button @click="quantity++" class="px-3 py-2 border rounded-lg">+</button>
+              </div>
+            </div>
 
-        <div class="prose max-w-none">
-          <h3 class="text-xl font-bold mb-4">Description</h3>
-          <p x-text="product.description"></p>
+            <button
+              class="w-full bg-indigo-600 text-white py-4 rounded-lg font-bold hover:bg-indigo-700 transition-colors"
+            >
+              Ajouter au panier - <span x-text="`${product.price * quantity}€`"></span>
+            </button>
+          </div>
+
+          <div class="prose max-w-none">
+            <h3 class="text-xl font-bold mb-4">
+              Description
+            </h3>
+            <p x-text="product.description">
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
 
-  <!-- Footer (identique à l'accueil) -->
-</body>
+    <!-- Footer (identique à l'accueil) -->
+  </body>
 </html>
