@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ product.name }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4338ca',
+            secondary: '#6366f1',
+            accent: '#f59e0b'
+          },
+          fontFamily: {
+            sans: ['Inter var', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen py-12">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden border border-white/30 transition-all duration-300 hover:shadow-3xl">
+      <!-- Image avec overlay au survol -->
+      <div class="relative group overflow-hidden">
+        <img src="{{ product.image_url }}" alt="{{ product.name }}" 
+             class="w-full h-96 md:h-[32rem] object-cover transition-transform duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      </div>
+      
+      <div class="p-8 md:p-10">
+        <div class="flex flex-col md:flex-row justify-between items-start gap-6 mb-8">
+          <div>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
+              {{ product.name }}
+            </h1>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-emerald-100 text-emerald-800">
+                Disponible
+              </span>
+              <span class="text-gray-500 text-sm">SKU: {{ product.id }}</span>
+            </div>
+          </div>
+          <span class="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            {{ product.price }} $
+          </span>
+        </div>
+
+        <!-- Description avec animation -->
+        <div class="prose prose-lg max-w-none text-gray-600 mb-10">
+          <p class="animate-fade-in">{{ product.description || 'Ce produit ne possède pas encore de description.' }}</p>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex flex-col sm:flex-row gap-4 pt-4 border-t border-gray-100">
+          <a href="{{ route('products.edit', { id: product.id }) }}" 
+             class="flex-1 bg-gradient-to-r from-primary to-secondary text-white px-6 py-3.5 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:opacity-90 flex items-center justify-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+            </svg>
+            Modifier le produit
+          </a>
+          
+          <form action="/delete/{{product.id}}?_method=DELETE" method="POST" class="flex-1">
+        {{ csrfField() }}
+
+            <button type="submit" 
+                    class="w-full bg-gradient-to-r from-red-500 to-rose-500 text-white px-6 py-3.5 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:opacity-90 flex items-center justify-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+              </svg>
+              Supprimer définitivement
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .animate-fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</body>
+</html>

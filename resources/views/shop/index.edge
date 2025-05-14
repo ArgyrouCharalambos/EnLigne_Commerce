@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boutique - Collection Exclusive</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4338ca',
+            secondary: '#6366f1',
+            accent: '#f59e0b',
+            dark: '#0f172a'
+          },
+          fontFamily: {
+            sans: ['Inter var', 'sans-serif'],
+            display: ['Cal Sans', 'Inter var', 'sans-serif']
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-out forwards',
+            'float': 'float 6s ease-in-out infinite'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+  <style>
+    .cal-sans {
+      font-family: 'Calistoga', cursive;
+    }
+    .filter-section {
+      scrollbar-width: thin;
+      scrollbar-color: #4338ca #f1f1f1;
+    }
+    .filter-section::-webkit-scrollbar {
+      height: 6px;
+    }
+    .filter-section::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    .filter-section::-webkit-scrollbar-thumb {
+      background-color: #4338ca;
+      border-radius: 10px;
+    }
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Navigation -->
+  <nav class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-white/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-20 items-center">
+        <div class="flex items-center">
+          <a href="/" class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent cal-sans">
+            Boutique Adonis
+          </a>
+        </div>
+        <div class="flex items-center space-x-8">
+          <a href="/shop" class="text-gray-700 hover:text-primary font-medium transition-colors duration-300 relative group">
+            Boutique
+            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+          </a>
+          <a href="/contact" class="text-gray-700 hover:text-primary font-medium transition-colors duration-300 relative group">
+            Contact
+            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+          </a>
+          <a href="/cart" class="relative p-2 hover:bg-gray-100 rounded-full transition-colors duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            <span class="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center transform hover:scale-110 transition-transform">3</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-dark to-primary text-white rounded-2xl p-8 md:p-12 mb-12 overflow-hidden relative">
+      <div class="absolute top-0 left-0 w-full h-full opacity-10">
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-secondary rounded-full filter blur-3xl"></div>
+        <div class="absolute bottom-1/3 right-1/4 w-72 h-72 bg-accent rounded-full filter blur-3xl"></div>
+      </div>
+      <div class="relative z-10">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 cal-sans">Collection Exclusive</h1>
+        <p class="text-xl md:text-2xl max-w-2xl mb-8 opacity-90">Découvrez nos produits artisanaux d'exception, sélectionnés avec soin pour vous</p>
+        <div class="flex flex-wrap gap-4">
+          <button class="bg-white text-primary px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition">
+            Nouveautés
+          </button>
+          <button class="bg-white/20 text-white px-6 py-2 rounded-full font-medium hover:bg-white/30 transition">
+            Best-sellers
+          </button>
+          <button class="bg-white/20 text-white px-6 py-2 rounded-full font-medium hover:bg-white/30 transition">
+            Promotions
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="mb-12">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
+        <h2 class="text-3xl font-bold text-gray-900">Notre Sélection</h2>
+        <div class="flex items-center gap-4 w-full md:w-auto">
+          <div class="relative flex-grow md:flex-grow-0 md:w-64">
+            <select class="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+              <option>Trier par : Pertinence</option>
+              <option>Prix croissant</option>
+              <option>Prix décroissant</option>
+              <option>Meilleures notes</option>
+              <option>Nouveautés</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
+          <button class="bg-primary text-white p-3 rounded-xl hover:bg-secondary transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex overflow-x-auto pb-2 filter-section gap-4">
+        <button class="whitespace-nowrap px-4 py-2 bg-white rounded-full border border-gray-200 hover:border-primary hover:text-primary transition">
+          Tous les produits
+        </button>
+        <button class="whitespace-nowrap px-4 py-2 bg-white rounded-full border border-gray-200 hover:border-primary hover:text-primary transition">
+          Nouveautés
+        </button>
+        <button class="whitespace-nowrap px-4 py-2 bg-white rounded-full border border-gray-200 hover:border-primary hover:text-primary transition">
+          Meilleures ventes
+        </button>
+        <button class="whitespace-nowrap px-4 py-2 bg-white rounded-full border border-gray-200 hover:border-primary hover:text-primary transition">
+          Promotion
+        </button>
+        <button class="whitespace-nowrap px-4 py-2 bg-white rounded-full border border-gray-200 hover:border-primary hover:text-primary transition">
+          Moins de 50€
+        </button>
+        <button class="whitespace-nowrap px-4 py-2 bg-white rounded-full border border-gray-200 hover:border-primary hover:text-primary transition">
+          Collection limitée
+        </button>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      @each(product in products)
+        <div class="product-card bg-white/80 backdrop-blur-sm rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 border border-white/30 group">
+          <div class="relative overflow-hidden h-64">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}" 
+                 class="w-full h-full object-cover product-image transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute top-4 right-4 flex flex-col gap-2">
+              <button class="bg-white/90 backdrop-blur-sm text-primary p-3 rounded-full shadow-md hover:bg-white hover:scale-110 transition-all duration-300 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </button>
+              <span class="bg-accent text-white text-xs font-bold px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-100">
+                Nouveau
+              </span>
+            </div>
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-semibold text-lg text-gray-900 line-clamp-1">{{ product.name }}</h3>
+              <span class="text-lg font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                {{ product.price }} $
+              </span>
+            </div>
+            <div class="flex items-center mb-4">
+              <div class="flex text-yellow-400 mr-2">
+                @each(star in [1,2,3,4,5])
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                @endeach
+              </div>
+              <span class="text-gray-500 text-sm">(24)</span>
+            </div>
+            <form action="/cart/add" method="POST" class="mt-auto">
+              <input type="hidden" name="product_id" value="{{ product.id }}">
+              <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:opacity-90 flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                Ajouter
+              </button>
+            </form>
+          </div>
+        </div>
+      @endeach
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex justify-center mt-16">
+      <nav class="flex items-center gap-1">
+        <button class="px-4 py-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-100 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button class="px-4 py-2 rounded-lg bg-primary text-white font-medium">1</button>
+        <button class="px-4 py-2 rounded-lg border border-gray-200 hover:bg-gray-100 transition">2</button>
+        <button class="px-4 py-2 rounded-lg border border-gray-200 hover:bg-gray-100 transition">3</button>
+        <button class="px-4 py-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-100 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </div>
+</body>
+</html>
